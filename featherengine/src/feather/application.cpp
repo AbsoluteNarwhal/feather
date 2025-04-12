@@ -10,7 +10,7 @@ namespace ft {
 
     void Application::run() {
         FT_CORE_LOG_SUCCESS("Feather Engine is running!");
-        while (true);
+        this->window->loop();
     }
 
     Application::~Application() {

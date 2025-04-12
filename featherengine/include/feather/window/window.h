@@ -1,5 +1,8 @@
 #pragma once
 
+#ifdef GRAPHICSAPI_OPENGL
+#include "glad/glad.h"
+#endif
 #include "GLFW/glfw3.h"
 #include <string>
 
@@ -18,5 +21,7 @@ namespace ft {
         inline GLFWwindow *getWindow() { return this->window; }
         void setVSync(bool enabled);
         bool isVSyncEnabled() const { return this->isVSync; }
+        int initAPI(); // Initialize OpenGL/Vulkan for this window
+        void loop();
     };
 }

@@ -42,4 +42,11 @@ namespace ft {
             this->isVSync = false;
         }
     }
+
+    void Window::loop() {
+        while(!glfwWindowShouldClose(this->window)) {
+            glfwSwapBuffers(this->window);
+            glfwPollEvents();    
+        }
+    }
 }
