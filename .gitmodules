@@ -1,0 +1,3 @@
+[submodule "featherengine/vendor/spdlog"]
+	path = featherengine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
