@@ -1,13 +1,13 @@
 #include "feather/application.h"
-#include <iostream>
+#include "feather/log.h"
 
 namespace ft {
     Application::Application() {
-        
+        LoggerManager::init("sandbox");
     }
 
     void Application::run() {
-        std::cout << "Hello World!" << std::endl;
+        FT_CORE_LOG_SUCCESS("Feather Engine is running!");
     }
 
     Application::~Application() {
