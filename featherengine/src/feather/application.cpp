@@ -14,6 +14,6 @@ namespace ft {
     }
 
     Application::~Application() {
-        
+        Window::cleanupAll();
     }
 }

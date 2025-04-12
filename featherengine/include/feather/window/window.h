@@ -23,5 +23,10 @@ namespace ft {
         bool isVSyncEnabled() const { return this->isVSync; }
         int initAPI(); // Initialize OpenGL/Vulkan for this window
         void loop();
+
+        static inline int cleanupAll() {
+            glfwTerminate();
+            return 0;
+        }
     };
 }
