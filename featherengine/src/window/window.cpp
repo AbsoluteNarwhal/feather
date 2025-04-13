@@ -33,6 +33,7 @@ namespace ft {
     }
 
     void Window::setVSync(bool enabled) {
+        // OpenGL only, move this somewhere else when we have vulkan
         this->isVSync = enabled;
         if (enabled) {
             glfwSwapInterval(1);

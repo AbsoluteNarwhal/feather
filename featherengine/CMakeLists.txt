@@ -28,6 +28,7 @@ target_include_directories(featherengine PRIVATE
     ${CMAKE_SOURCE_DIR}/featherengine/src
     ${CMAKE_SOURCE_DIR}/featherengine/vendor/glad/include
     ${OpenGL_INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/featherengine/vendor/glm
 )
 
 target_include_directories(featherengine PUBLIC
