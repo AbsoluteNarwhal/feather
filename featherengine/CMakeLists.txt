@@ -1,8 +1,8 @@
 set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 
 # spdlog
-add_subdirectory(${CMAKE_SOURCE_DIR}/featherengine/vendor/spdlog)
 set(spdlog_DIR ${CMAKE_SOURCE_DIR}/featherengine/vendor/spdlog/build)
+add_subdirectory(${CMAKE_SOURCE_DIR}/featherengine/vendor/spdlog)
 find_package(spdlog REQUIRED)
 
 # openGL
@@ -41,5 +41,6 @@ if(MSVC)
 endif()
 
 target_compile_definitions(featherengine PRIVATE
+    FT_BUILD_DLL
     GRAPHICSAPI_OPENGL
 )

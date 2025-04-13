@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace ft {
-    class LoggerManager {
+    class FEATHER_API LoggerManager {
     private:
         static std::shared_ptr<spdlog::logger> coreLogger;
         static std::shared_ptr<spdlog::logger> clientLogger;
