@@ -4,3 +4,6 @@
 [submodule "featherengine/vendor/glfw"]
 	path = featherengine/vendor/glfw
 	url = https://github.com/glfw/glfw
+[submodule "featherengine/vendor/glm"]
+	path = featherengine/vendor/glm
+	url = https://github.com/g-truc/glm
