@@ -10,7 +10,7 @@ Required software:
 - CMake 
 - Make/Ninja/any other build system supported by CMake
 - Clang/MSVC (GCC not tested but may work)
-- Wayland development packages (see below)
+- For Linux: Wayland development packages (see below)
 
 Instructions:
 
@@ -22,6 +22,8 @@ Instructions:
 
 2. Clone the repository using `git clone https://github.com/AbsoluteNarwhal/feather`
 
-3. Run `./scripts/quickbuild-windows.bat` or `./scripts/quickbuild-linux.bat`
+3. Create a `build` directory if it doesn't already exist, and `cd` into it
 
-4. Run the template project using `./build/bin/sandbox`
+4. Run `cmake ..` and `cmake --build .`
+
+5. Run the template project using `./bin/sandbox`

@@ -2,8 +2,10 @@ set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 
 # spdlog
 set(spdlog_DIR ${CMAKE_SOURCE_DIR}/featherengine/vendor/spdlog/build)
+set(SPDLOG_BUILD_SHARED OFF)
+set(SPDLOG_BUILD_STATIC ON)
+set(SPDLOG_HEADER_ONLY OFF)
 add_subdirectory(${CMAKE_SOURCE_DIR}/featherengine/vendor/spdlog)
-find_package(spdlog REQUIRED)
 
 # openGL
 find_package(OpenGL REQUIRED)
@@ -21,6 +23,7 @@ add_library(featherengine SHARED
 )
 
 target_link_libraries(featherengine PRIVATE spdlog::spdlog)
+target_compile_definitions(featherengine PRIVATE SPDLOG_COMPILED_LIB)
 target_link_libraries(featherengine PRIVATE ${OpenGL_LIBRARIES})
 target_link_libraries(featherengine PRIVATE glfw)
 
