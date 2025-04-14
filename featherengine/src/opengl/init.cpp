@@ -4,7 +4,7 @@
 #include "feather/log.h"
 
 namespace ft {
-    void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+    void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 
     int Window::initAPI() {
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -13,11 +13,11 @@ namespace ft {
         }
 
         glViewport(0, 0, this->width, this->height);
-        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+        glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
         return 0;
     }
 
-    void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
         glViewport(0, 0, width, height);
     }  
 }
