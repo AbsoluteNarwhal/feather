@@ -22,8 +22,10 @@ Instructions:
 
 2. Clone the repository using `git clone https://github.com/AbsoluteNarwhal/feather`
 
-3. Create a `build` directory if it doesn't already exist, and `cd` into it
+3. Run `git submodule update --init --recursive` to download all dependencies
 
-4. Run `cmake ..` and `cmake --build .`
+4. Create a `build` directory if it doesn't already exist, and `cd` into it
 
-5. Run the template project using `./bin/sandbox`
+5. Run `cmake ..` and `cmake --build .`
+
+6. Run the template project using `./bin/sandbox`
