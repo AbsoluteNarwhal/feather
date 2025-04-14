@@ -44,10 +44,12 @@ namespace ft {
         }
     }
 
-    void Window::loop() {
-        while(!glfwWindowShouldClose(this->window)) {
-            glfwSwapBuffers(this->window);
-            glfwPollEvents();    
+    void Window::swapAndPoll() {
+        glfwSwapBuffers(this->window);
+        glfwPollEvents(); 
+        
+        if (glfwWindowShouldClose(this->window)) {
+            this->shouldEnd = true;
         }
     }
 }

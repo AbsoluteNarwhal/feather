@@ -15,6 +15,7 @@ namespace ft {
         int width;
         int height;
         bool isVSync;
+        bool shouldEnd = false;
 
     public:
         int initWindow(const char *title, int width, int height);
@@ -22,7 +23,8 @@ namespace ft {
         void setVSync(bool enabled);
         inline bool isVSyncEnabled() const { return this->isVSync; }
         int initAPI(); // Initialize OpenGL/Vulkan for this window
-        void loop();
+        void swapAndPoll();
+        inline bool shouldClose() const { return this->shouldEnd; }
 
         static inline int cleanupAll() {
             glfwTerminate();

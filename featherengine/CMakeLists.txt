@@ -47,8 +47,11 @@ endif()
 target_compile_definitions(featherengine PRIVATE
     FT_BUILD_DLL
     GRAPHICSAPI_OPENGL
-    FT_ENABLE_CLIENT_LOGGING
     FT_ENABLE_CORE_LOGGING
-    FT_ENABLE_CLIENT_ASSERTS
     FT_ENABLE_CORE_ASSERTS
+)
+
+target_compile_definitions(featherengine PUBLIC 
+    FT_ENABLE_CLIENT_LOGGING
+    FT_ENABLE_CLIENT_ASSERTS
 )

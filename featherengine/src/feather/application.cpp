@@ -1,5 +1,7 @@
 #include "feather/application.h"
+#include "feather/core.h"
 #include "feather/log.h"
+#include "feather/event/event.h"
 
 namespace ft {
     Application::Application() {
@@ -10,7 +12,11 @@ namespace ft {
 
     void Application::run() {
         FT_CORE_LOG_SUCCESS("Feather Engine is running!");
-        this->window->loop();
+        while (true) {
+            this->window->swapAndPoll();
+            EventManager::handleAllEvents();
+            if (this->window->shouldClose()) break;
+        }
     }
 
     Application::~Application() {

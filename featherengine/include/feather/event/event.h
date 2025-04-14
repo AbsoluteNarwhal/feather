@@ -3,12 +3,14 @@
 #include "feather/core.h"
 #include <queue>
 
+// TODO: Make Event::getName() and Event::toString() only exist on debug builds
+
 namespace ft {
     enum class EventType {
         None = 0,
         AppTick, AppUpdate, AppRender,
-        WindowClosed, WindowResized, WindowFocused, WindowUnfocused, WindowMoved,
-        KeyPressed, KeyReleased,
+        WindowResized, WindowMoved, WindowFocused, WindowUnfocused, WindowClosed,
+        KeyPressed, KeyRepeated, KeyReleased,
         MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled,
     };
 
@@ -16,11 +18,16 @@ namespace ft {
         friend class EventManager;
 
     protected:
-        bool handled = false;
         EventType type = EventType::None;
 
     public:
-        virtual const char* getName() const = 0;
+        virtual const char* getName() const {
+            return "Event(null)";
+        }
+
+        virtual std::string toString() const {
+            return std::string(this->getName());
+        }
     };
 
     class EventManager {
@@ -36,8 +43,11 @@ namespace ft {
             return eventQueue.size();
         }
 
-        inline static void dispatchEvent(const Event event) {
+        inline static void dispatchEvent(const Event& event) {
             EventManager::eventQueue.push(event);
         }
+
+        static void handleAllEvents();
+        static void handleFirstEvent();
     };
 }
