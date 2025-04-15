@@ -6,24 +6,16 @@
 namespace ft {
     class MouseButtonEvent : public Event {
     protected:
-        int buttonCode;
+        int button;
+        int mods;
 
     public:
-        MouseButtonEvent(EventType type, int buttonCode) : buttonCode(buttonCode) {
+        MouseButtonEvent(EventType type, int button, int mods) : button(button), mods(mods) {
             this->type = type;
         }
 
-        const char *getName() const override {
-            if (this->type == EventType::MouseButtonPressed) return "MouseEvent(ButtonPressed)";
-            if (this->type == EventType::MouseButtonReleased) return "MouseEvent(ButtonReleased)";
-            return "MouseEvent(Unknown)";
-        }
-
-        std::string toString() const override {
-            std::stringstream ss;
-            ss << this->getName() << ": Button " << this->buttonCode;
-            return ss.str();
-        }
+        const char *getName() const override;
+        std::string toString() const override;
     };
 
     class MouseMovedEvent : public Event {
@@ -35,34 +27,20 @@ namespace ft {
             this->type = EventType::MouseMoved;
         }
 
-        const char *getName() const override {
-            return "MouseEvent(Moved)";
-        }
-
-        std::string toString() const override {
-            std::stringstream ss;
-            ss << this->getName() << ": Moved to (" << this->x << ", " << this->y << ")";
-            return ss.str();
-        }
+        const char *getName() const override;
+        std::string toString() const override;
     };
 
     class MouseScrolledEvent : public Event {
     protected:
-        int xOffset, yOffset;
+        double xOffset, yOffset;
 
     public:
-        MouseScrolledEvent(int xOffset, int yOffset) : xOffset(xOffset), yOffset(yOffset) {
+        MouseScrolledEvent(double xOffset, double yOffset) : xOffset(xOffset), yOffset(yOffset) {
             this->type = EventType::MouseScrolled;
         }
 
-        const char *getName() const override {
-            return "MouseEvent(Scrolled)";
-        }
-
-        std::string toString() const override {
-            std::stringstream ss;
-            ss << this->getName() << ": Scrolled by (" << this->xOffset << ", " << this->yOffset << ")";
-            return ss.str();
-        }
+        const char *getName() const override;
+        std::string toString() const override;
     };
 }

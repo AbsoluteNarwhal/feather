@@ -2,6 +2,8 @@
 
 #include "feather/core.h"
 #include <queue>
+#include <string>
+#include <memory>
 
 // TODO: Make Event::getName() and Event::toString() only exist on debug builds
 
@@ -21,30 +23,27 @@ namespace ft {
         EventType type = EventType::None;
 
     public:
-        virtual const char* getName() const {
-            return "Event(null)";
-        }
+        virtual const char* getName() const;
+        virtual std::string toString() const;
 
-        virtual std::string toString() const {
-            return std::string(this->getName());
-        }
+        virtual ~Event() = default;
     };
 
     class EventManager {
     private:
-        static std::queue<Event> eventQueue;    
+        static std::queue<std::unique_ptr<Event>> eventQueue;    
 
     public:
         inline static void init() {
-            eventQueue = std::queue<Event>();
+            eventQueue = std::queue<std::unique_ptr<Event>>();
         }
 
         inline static int getQueueLength() {
             return eventQueue.size();
         }
 
-        inline static void dispatchEvent(const Event& event) {
-            EventManager::eventQueue.push(event);
+        inline static void dispatchEvent(std::unique_ptr<Event> event) {
+            EventManager::eventQueue.push(std::move(event));
         }
 
         static void handleAllEvents();

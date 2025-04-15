@@ -3,7 +3,7 @@
 #include "feather/log.h"
 
 namespace ft {
-    std::queue<Event> EventManager::eventQueue;
+    std::queue<std::unique_ptr<Event>> EventManager::eventQueue;
 
     void EventManager::handleAllEvents() {
         while (EventManager::getQueueLength() > 0) {
@@ -12,7 +12,15 @@ namespace ft {
     }
 
     void EventManager::handleFirstEvent() {
-        FT_CORE_LOG("{0}", eventQueue.front().toString());
+        FT_CORE_LOG("{0}", eventQueue.front()->toString());
         eventQueue.pop();
+    }
+
+    const char* Event::getName() const {
+        return "Event(null)";
+    }
+
+    std::string Event::toString() const {
+        return std::string(this->getName());
     }
 }

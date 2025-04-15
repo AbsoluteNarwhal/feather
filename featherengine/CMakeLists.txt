@@ -17,6 +17,9 @@ add_library(featherengine SHARED
     ${CMAKE_SOURCE_DIR}/featherengine/src/feather/application.cpp
     ${CMAKE_SOURCE_DIR}/featherengine/src/feather/log.cpp
     ${CMAKE_SOURCE_DIR}/featherengine/src/window/window.cpp
+    ${CMAKE_SOURCE_DIR}/featherengine/src/event/event.cpp
+    ${CMAKE_SOURCE_DIR}/featherengine/src/event/keyevent.cpp
+    ${CMAKE_SOURCE_DIR}/featherengine/src/event/mouseevent.cpp
     ${CMAKE_SOURCE_DIR}/featherengine/src/opengl/init.cpp
 
     ${CMAKE_SOURCE_DIR}/featherengine/vendor/glad/src/glad.c # glad

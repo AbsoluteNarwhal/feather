@@ -2,6 +2,11 @@
 #include "feather/log.h"
 
 namespace ft {
+    void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
+    void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+    void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+    void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
     bool Window::isGLFWInitialized = false;
 
     int Window::initWindow(const char *title, int width, int height) {
@@ -28,6 +33,12 @@ namespace ft {
 
         glfwMakeContextCurrent(this->window);
         this->setVSync(true);
+
+        // input callbacks for event system
+        glfwSetKeyCallback(this->window, keyCallback);
+        glfwSetCursorPosCallback(this->window, cursorPositionCallback);
+        glfwSetMouseButtonCallback(this->window, mouseButtonCallback);
+        glfwSetScrollCallback(this->window, scrollCallback);
 
         return 0;
     }
