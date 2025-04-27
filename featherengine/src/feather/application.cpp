@@ -5,9 +5,13 @@
 
 namespace ft {
     Application::Application() {
-        LoggerManager::init("sandbox");
+        
+    }
+
+    void Application::init() {
+        LoggerManager::init(this->getClientName());
         this->window = std::make_unique<Window>();
-        int success = this->window->initWindow("Feather Engine", 1280, 720);
+        int success = this->window->initWindow(this->getWindowTitle(), 1280, 720);
     }
 
     void Application::run() {
@@ -21,5 +25,13 @@ namespace ft {
 
     Application::~Application() {
         Window::cleanupAll();
+    }
+
+    const char *Application::getClientName() const {
+        return "client";
+    }
+
+    const char *Application::getWindowTitle() const {
+        return "Feather Engine";
     }
 }
