@@ -1,6 +1,6 @@
 # Feather Engine
 
-A 3D voxel engine.
+A 3D voxel engine, written in C++ using OpenGL. Supports Windows and Linux.
 
 ## Build instructions
 
