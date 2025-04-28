@@ -1,5 +1,5 @@
 add_executable(sandbox
-    ${CMAKE_SOURCE_DIR}/sandbox/src/main.cpp
+    src/main.cpp
 )
 
 target_link_libraries(sandbox PRIVATE featherengine)
