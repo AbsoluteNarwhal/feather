@@ -45,18 +45,23 @@ target_include_directories(featherengine PUBLIC
     vendor/glfw/include
 )
 
+target_compile_definitions(featherengine PRIVATE
+    FT_BUILD_DLL
+    GRAPHICSAPI_OPENGL
+)
+
 if(MSVC)
     target_compile_definitions(featherengine PRIVATE COMPILER_MSVC)
 endif()
 
-target_compile_definitions(featherengine PRIVATE
-    FT_BUILD_DLL
-    GRAPHICSAPI_OPENGL
-    FT_ENABLE_CORE_LOGGING
-    FT_ENABLE_CORE_ASSERTS
-)
-
-target_compile_definitions(featherengine PUBLIC 
-    FT_ENABLE_CLIENT_LOGGING
-    FT_ENABLE_CLIENT_ASSERTS
-)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_definitions(featherengine PRIVATE
+        FT_BUILD_DEBUG
+        FT_ENABLE_CORE_LOGGING
+        FT_ENABLE_CORE_ASSERTS
+    )
+else()
+    target_compile_definitions(featherengine PRIVATE
+        FT_BUILD_RELEASE
+    )
+endif()
