@@ -1,5 +1,9 @@
 #include "feather/window/window.h"
 #include "feather/log.h"
+#include "feather/core.h"
+#include "feather/event/appevent.h"
+#include "feather/event/windowevent.h"
+#include <memory>
 
 namespace ft {
     void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
@@ -57,9 +61,14 @@ namespace ft {
 
     void Window::swapAndPoll() {
         glfwSwapBuffers(this->window);
+
+        AppEvent renderEvent(EventType::AppRender, 0.0f);
+        EventManager::handleEvent(&renderEvent); // handle it immediately instead of queueing it
+
         glfwPollEvents(); 
         
         if (glfwWindowShouldClose(this->window)) {
+            EventManager::dispatchEvent(std::make_unique<WindowClosedEvent>(this));
             this->shouldEnd = true;
         }
     }

@@ -20,6 +20,8 @@ set(enginesrc
     src/event/event.cpp
     src/event/keyevent.cpp
     src/event/mouseevent.cpp
+    src/event/appevent.cpp
+    src/event/windowevent.cpp
     src/opengl/init.cpp
 
     vendor/glad/src/glad.c # glad

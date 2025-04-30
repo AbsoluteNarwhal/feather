@@ -25,6 +25,7 @@ namespace ft {
     public:
         virtual const char* getName() const;
         virtual std::string toString() const;
+        virtual void runCallbacks() {}
 
         virtual ~Event() = default;
     };
@@ -47,6 +48,6 @@ namespace ft {
         }
 
         static void handleAllEvents();
-        static void handleFirstEvent();
+        static void handleEvent(Event *event);
     };
 }

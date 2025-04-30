@@ -6,8 +6,14 @@
 #include "feather/core.h"
 #include "feather/event/mouseevent.h"
 #include <memory>
+#include <sstream>
 
 namespace ft {
+
+    std::vector<void(*)(MouseButtonEvent*)> MouseButtonEvent::callbacks;
+    std::vector<void(*)(MouseMovedEvent*)> MouseMovedEvent::callbacks;
+    std::vector<void(*)(MouseScrolledEvent*)> MouseScrolledEvent::callbacks;
+
     void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
         if (action == GLFW_PRESS) {
             EventManager::dispatchEvent(std::make_unique<MouseButtonEvent>(EventType::MouseButtonPressed, button, mods));

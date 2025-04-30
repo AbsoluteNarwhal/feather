@@ -7,17 +7,17 @@ namespace ft {
 
     void EventManager::handleAllEvents() {
         while (EventManager::getQueueLength() > 0) {
-            EventManager::handleFirstEvent();
+            EventManager::handleEvent(eventQueue.front().get());
+            eventQueue.pop();
         }
     }
 
-    void EventManager::handleFirstEvent() {
-        FT_CORE_LOG("{0}", eventQueue.front()->toString());
-        eventQueue.pop();
+    void EventManager::handleEvent(Event *event) {
+        event->runCallbacks();
     }
 
     const char* Event::getName() const {
-        return "Event(null)";
+        return "Event(Unknown)";
     }
 
     std::string Event::toString() const {

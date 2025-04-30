@@ -8,3 +8,4 @@
 #include "feather/event/windowevent.h"
 #include "feather/event/keyevent.h"
 #include "feather/event/mouseevent.h"
+#include "feather/event/appevent.h"

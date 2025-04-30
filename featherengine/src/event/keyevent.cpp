@@ -6,8 +6,11 @@
 #include "feather/core.h"
 #include "feather/event/keyevent.h"
 #include <memory>
+#include <sstream>
 
 namespace ft {
+    std::vector<void(*)(KeyEvent*)> KeyEvent::callbacks;
+
     void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
         if (action == GLFW_PRESS) {
             EventManager::dispatchEvent(std::make_unique<KeyEvent>(EventType::KeyPressed, key, scancode, mods));
