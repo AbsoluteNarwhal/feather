@@ -16,6 +16,9 @@ namespace ft {
             this->type = type;
         }
 
+        inline int getButton() const { return button; }
+        inline int getMods() const { return mods; }
+
         const char *getName() const override;
         std::string toString() const override;
 
@@ -41,6 +44,9 @@ namespace ft {
             this->type = EventType::MouseMoved;
         }
 
+        inline int getX() const { return x; }
+        inline int getY() const { return y; }
+
         const char *getName() const override;
         std::string toString() const override;
 
@@ -65,6 +71,9 @@ namespace ft {
         MouseScrolledEvent(double xOffset, double yOffset) : xOffset(xOffset), yOffset(yOffset) {
             this->type = EventType::MouseScrolled;
         }
+
+        inline int getXOffset() const { return xOffset; }
+        inline int getYOffset() const { return yOffset; }
 
         const char *getName() const override;
         std::string toString() const override;

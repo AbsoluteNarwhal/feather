@@ -22,6 +22,10 @@ namespace ft {
         const char *getName() const override;
         std::string toString() const override;
 
+        inline int getKeycode() const { return keycode; }
+        inline int getScancode() const { return scancode; }
+        inline int getMods() const { return mods; }
+
         inline static void registerCallback(void(*fptr)(KeyEvent*)) {
             callbacks.push_back(fptr);
         }

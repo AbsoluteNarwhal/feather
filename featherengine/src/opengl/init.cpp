@@ -5,6 +5,7 @@
 
 namespace ft {
     void framebufferSizeCallback(GLFWwindow* window, int width, int height);
+    int initialiseForTheTriangle();
 
     int Window::initAPI() {
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -14,7 +15,8 @@ namespace ft {
 
         glViewport(0, 0, this->width, this->height);
         glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
-        return 0;
+
+        return initialiseForTheTriangle();
     }
 
     void framebufferSizeCallback(GLFWwindow* window, int width, int height) {

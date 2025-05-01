@@ -10,6 +10,7 @@ namespace ft {
     void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
     void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
     void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+    void renderTriangle();
 
     bool Window::isGLFWInitialized = false;
 
@@ -17,9 +18,9 @@ namespace ft {
         if (!isGLFWInitialized) {
             int success = glfwInit();
             FT_CORE_ASSERT(success, "Failed to initialize GLFW");
-            // glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-            // glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-            // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+            glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
             isGLFWInitialized = true;
         }
@@ -60,6 +61,7 @@ namespace ft {
     }
 
     void Window::swapAndPoll() {
+        renderTriangle();
         glfwSwapBuffers(this->window);
 
         AppEvent renderEvent(EventType::AppRender, 0.0f);

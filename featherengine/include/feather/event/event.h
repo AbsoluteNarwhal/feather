@@ -14,6 +14,7 @@ namespace ft {
         WindowResized, WindowMoved, WindowFocused, WindowUnfocused, WindowClosed,
         KeyPressed, KeyRepeated, KeyReleased,
         MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled,
+        CustomEvent
     };
 
     class Event {
@@ -23,6 +24,7 @@ namespace ft {
         EventType type = EventType::None;
 
     public:
+        EventType getType() const { return type; }
         virtual const char* getName() const;
         virtual std::string toString() const;
         virtual void runCallbacks() {}

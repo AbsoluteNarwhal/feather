@@ -15,6 +15,10 @@ namespace ft {
             this->type = EventType::WindowResized;
         }
 
+        inline Window *getWindow() const { return this->window; }
+        inline int getWidth() const { return this->width; }
+        inline int getHeight() const { return this->height; }
+
         const char *getName() const override;
         std::string toString() const override;
 
@@ -40,6 +44,10 @@ namespace ft {
             this->type = EventType::WindowMoved;
         }
 
+        inline Window *getWindow() const { return this->window; }
+        inline int getX() const { return this->x; }
+        inline int getY() const { return this->y; }
+
         const char *getName() const override;
         std::string toString() const override;
 
@@ -63,6 +71,8 @@ namespace ft {
         WindowFocusedEvent(Window *window) : window(window) {
             this->type = EventType::WindowFocused;
         }
+
+        inline Window *getWindow() const { return this->window; }
 
         const char *getName() const override;
         std::string toString() const override;
@@ -88,6 +98,8 @@ namespace ft {
             this->type = EventType::WindowUnfocused;
         }
 
+        inline Window *getWindow() const { return this->window; }
+
         const char *getName() const override;
         std::string toString() const override;
 
@@ -111,6 +123,8 @@ namespace ft {
         WindowClosedEvent(Window *window) : window(window) {
             this->type = EventType::WindowClosed;
         }
+
+        inline Window *getWindow() const { return this->window; }
 
         const char *getName() const override;
         std::string toString() const override;

@@ -16,6 +16,9 @@ namespace ft {
         LoggerManager::init(this->getClientName());
         this->window = std::make_unique<Window>();
         int success = this->window->initWindow(this->getWindowTitle(), 1280, 720);
+        FT_CORE_ASSERT(success == 0, "Failed to create window!");
+        success = this->window->initAPI();
+        FT_CORE_ASSERT(success == 0, "Failed to initialize OpenGL!");
 
         KeyEvent::registerCallback(keyPressed);
     }

@@ -23,6 +23,7 @@ set(enginesrc
     src/event/appevent.cpp
     src/event/windowevent.cpp
     src/opengl/init.cpp
+    src/opengl/test.cpp
 
     vendor/glad/src/glad.c # glad
 )
