@@ -16,6 +16,7 @@ add_subdirectory(vendor/glfw)
 set(enginesrc 
     src/feather/application.cpp
     src/feather/log.cpp
+    src/feather/files.cpp
     src/window/window.cpp
     src/event/event.cpp
     src/event/keyevent.cpp
@@ -24,6 +25,7 @@ set(enginesrc
     src/event/windowevent.cpp
     src/opengl/init.cpp
     src/opengl/test.cpp
+    src/opengl/shader.cpp
 
     vendor/glad/src/glad.c # glad
 )
@@ -37,19 +39,22 @@ target_link_libraries(featherengine PRIVATE glfw)
 
 target_include_directories(featherengine PRIVATE
     src
-    vendor/glad/include
     ${OpenGL_INCLUDE_DIRS}
-    vendor/glm
 )
 
 target_include_directories(featherengine PUBLIC
     "include"
     vendor/spdlog/include
     vendor/glfw/include
+    vendor/glad/include
+    vendor/glm
 )
 
 target_compile_definitions(featherengine PRIVATE
     FT_BUILD_DLL
+)
+
+target_compile_definitions(featherengine PUBLIC
     GRAPHICSAPI_OPENGL
 )
 

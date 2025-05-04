@@ -4,10 +4,6 @@
 #include "feather/event/keyevent.h"
 
 namespace ft {
-    void keyPressed(KeyEvent *event) {
-        FT_CORE_LOG("{0}", event->toString());
-    }
-
     Application::Application() {
         
     }
@@ -19,8 +15,6 @@ namespace ft {
         FT_CORE_ASSERT(success == 0, "Failed to create window!");
         success = this->window->initAPI();
         FT_CORE_ASSERT(success == 0, "Failed to initialize OpenGL!");
-
-        KeyEvent::registerCallback(keyPressed);
     }
 
     void Application::run() {
