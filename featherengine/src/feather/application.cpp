@@ -2,10 +2,7 @@
 #include "feather/core.h"
 #include "feather/log.h"
 #include "feather/event/keyevent.h"
-
-#ifdef GRAPHICSAPI_OPENGL
-#include "feather/opengl/opengl.h"
-#endif
+#include "feather/renderer/renderer.h"
 
 namespace ft {
     Application::Application() {
@@ -17,7 +14,7 @@ namespace ft {
         this->window = std::make_unique<Window>();
         int success = this->window->initWindow(this->getWindowTitle(), 1280, 720);
         FT_CORE_ASSERT(success == 0, "Failed to create window!");
-        success = initOpenGL(this->window.get());
+        success = initAPI(this->window.get());
         FT_CORE_ASSERT(success == 0, "Failed to initialize OpenGL!");
     }
 

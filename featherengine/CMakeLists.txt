@@ -23,6 +23,7 @@ set(enginesrc
     src/event/mouseevent.cpp
     src/event/appevent.cpp
     src/event/windowevent.cpp
+    src/renderer/renderer.cpp
     src/opengl/init.cpp
     src/opengl/test.cpp
     src/opengl/shader.cpp

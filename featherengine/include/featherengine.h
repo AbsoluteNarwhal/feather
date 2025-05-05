@@ -11,6 +11,8 @@
 #include "feather/event/mouseevent.h"
 #include "feather/event/appevent.h"
 
+#include "feather/renderer/renderer.h"
+
 #ifdef GRAPHICSAPI_OPENGL
 #include "feather/opengl/opengl.h"
 #include "feather/opengl/shader.h"
