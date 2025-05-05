@@ -2,13 +2,12 @@
 #include "feather/window/window.h"
 
 namespace ft {
-    struct OpenGLContextInfo {
-        int majorVersion;
-        int minorVersion;
-        const char versionStr[64];
-        const char vendorStr[32];
-        const char rendererStr[64];
+    enum class GraphicsAPI {
+        NONE = 0,
+        OPENGL = 1,
+        VULKAN = 2,
     };
 
+    GraphicsAPI getGraphicsAPI();
     int initAPI(Window *window);
 }

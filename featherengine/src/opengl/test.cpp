@@ -1,7 +1,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "feather/core.h"
-#include "feather/opengl/shader.h"
+#include "opengl/shader.h"
 #include "feather/files.h"
 #include "feather/log.h"
 
@@ -16,10 +16,11 @@ namespace ft {
     Shader shader;
 
     int initialiseForTheTriangle() {
-        FT_CORE_ASSERT(shader.init(
+        int success = shader.init(
             getFileStr("../featherengine/resources/glsl/default.vert").c_str(), 
             getFileStr("../featherengine/resources/glsl/default.frag").c_str()
-        ) == 0, "Failed to initialize shaders");
+        );
+        FT_CORE_ASSERT(success == 0, "Failed to initialize shaders");
 
         glGenVertexArrays(1, &VAO); 
         glGenBuffers(1, &VBO);

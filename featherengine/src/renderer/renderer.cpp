@@ -3,10 +3,20 @@
 #include "feather/log.h"
 
 #ifdef GRAPHICSAPI_OPENGL
-#include "feather/opengl/opengl.h"
+#include "opengl/opengl.h"
 #endif
 
 namespace ft {
+    GraphicsAPI getGraphicsAPI() {
+#ifdef GRAPHICSAPI_OPENGL
+        return GraphicsAPI::OPENGL;
+#elif defined(GRAPHICSAPI_VULKAN)
+        return GraphicsAPI::VULKAN;
+#else
+        return GraphicsAPI::NONE;
+#endif
+    }
+
     int initAPI(Window *window) {
 #ifdef GRAPHICSAPI_OPENGL
         return initOpenGL(window);

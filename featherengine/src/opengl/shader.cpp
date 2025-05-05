@@ -1,4 +1,4 @@
-#include "feather/opengl/shader.h"
+#include "opengl/shader.h"
 #include "glad/glad.h"
 #include "feather/core.h"
 #include "feather/log.h"
