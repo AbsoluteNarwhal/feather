@@ -20,6 +20,8 @@ namespace ft {
     public:
         int initWindow(const char *title, int width, int height);
         inline GLFWwindow *getWindow() { return this->window; }
+        inline int getOriginalWidth() const { return this->width; }
+        inline int getOriginalHeight() const { return this->height; }
         void setVSync(bool enabled);
         inline bool isVSyncEnabled() const { return this->isVSync; }
         int initAPI(); // Initialize OpenGL/Vulkan for this window

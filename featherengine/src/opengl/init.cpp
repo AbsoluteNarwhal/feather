@@ -7,14 +7,14 @@ namespace ft {
     void framebufferSizeCallback(GLFWwindow* window, int width, int height);
     int initialiseForTheTriangle();
 
-    int Window::initAPI() {
+    int initOpenGL(Window *window) {
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
             FT_CORE_LOG_ERROR("Failed to initialize GLAD");
             return -1;
         }
 
-        glViewport(0, 0, this->width, this->height);
-        glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+        glViewport(0, 0, window->getOriginalWidth(), window->getOriginalHeight());
+        glfwSetFramebufferSizeCallback(window->getWindow(), framebufferSizeCallback);
 
         return initialiseForTheTriangle();
     }

@@ -12,5 +12,6 @@
 #include "feather/event/appevent.h"
 
 #ifdef GRAPHICSAPI_OPENGL
+#include "feather/opengl/opengl.h"
 #include "feather/opengl/shader.h"
 #endif
