@@ -7,10 +7,6 @@ set(SPDLOG_BUILD_STATIC ON)
 set(SPDLOG_HEADER_ONLY OFF)
 add_subdirectory(vendor/spdlog)
 
-# openGL
-find_package(OpenGL REQUIRED)
-
-# glfw
 add_subdirectory(vendor/glfw)
 
 set(enginesrc 
@@ -24,42 +20,51 @@ set(enginesrc
     src/event/appevent.cpp
     src/event/windowevent.cpp
     src/renderer/renderer.cpp
-    src/opengl/init.cpp
-    src/opengl/test.cpp
-    src/opengl/shader.cpp
-
-    vendor/glad/src/glad.c # glad
 )
+
+if(USE_OPENGL)
+    find_package(OpenGL REQUIRED)
+
+    add_library(glad STATIC vendor/glad/src/glad.c)
+    target_include_directories(glad PUBLIC vendor/glad/include)
+
+    list(APPEND enginesrc 
+        src/opengl/init.cpp
+        src/opengl/test.cpp
+        src/opengl/shader.cpp
+    )
+else()
+    message(FATAL_ERROR "Other APIs are not supported yet. Please set USE_OPENGL to ON.")
+endif()
 
 add_library(featherengine SHARED ${enginesrc})
 
 target_link_libraries(featherengine PRIVATE spdlog::spdlog)
 target_compile_definitions(featherengine PRIVATE SPDLOG_COMPILED_LIB)
 target_link_libraries(featherengine PRIVATE ${OpenGL_LIBRARIES})
-target_link_libraries(featherengine PRIVATE glfw)
-
-target_include_directories(featherengine PRIVATE
-    src
-    ${OpenGL_INCLUDE_DIRS}
-)
+target_link_libraries(featherengine PUBLIC glfw)
 
 target_include_directories(featherengine PUBLIC
     "include"
     vendor/spdlog/include
-    vendor/glfw/include
-    vendor/glad/include
-    vendor/glm
+)
+
+target_include_directories(featherengine PRIVATE
+    src
 )
 
 target_compile_definitions(featherengine PRIVATE
     FT_BUILD_DLL
 )
 
-target_compile_definitions(featherengine PUBLIC
-    GRAPHICSAPI_OPENGL
-)
+if(USE_OPENGL)
+    target_compile_definitions(featherengine PUBLIC
+        GRAPHICSAPI_OPENGL
+    )
+    target_link_libraries(featherengine PRIVATE glad)
+endif()
 
-if(MSVC)
+if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_definitions(featherengine PRIVATE COMPILER_MSVC)
 endif()
 

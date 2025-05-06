@@ -1,5 +1,5 @@
 #define GLFW_INCLUDE_NONE
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 #include "feather/core.h"
 #include "feather/event/keyevent.h"

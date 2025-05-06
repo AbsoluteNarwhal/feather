@@ -1,5 +1,5 @@
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "feather/core.h"
 #include "opengl/shader.h"
 #include "feather/files.h"

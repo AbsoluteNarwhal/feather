@@ -1,5 +1,5 @@
 #include "opengl/shader.h"
-#include "glad/glad.h"
+#include <glad/glad.h>
 #include "feather/core.h"
 #include "feather/log.h"
 #include <sstream>

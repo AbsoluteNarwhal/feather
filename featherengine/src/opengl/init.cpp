@@ -1,5 +1,5 @@
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "opengl/opengl.h"
 #include "feather/window/window.h"
 #include "feather/log.h"
