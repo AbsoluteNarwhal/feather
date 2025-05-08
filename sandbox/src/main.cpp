@@ -18,5 +18,7 @@ int main() {
     app.init();
     app.run();
 
-    FT_LOG_WARN("Hello from Sandbox!");
+#ifdef GRAPHICSAPI_OPENGL
+    FT_LOG("OpenGL Version: {0}", ft::getOpenGLContextInfo()->versionStr);
+#endif
 }

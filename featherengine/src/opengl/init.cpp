@@ -3,8 +3,11 @@
 #include "opengl/opengl.h"
 #include "feather/window/window.h"
 #include "feather/log.h"
+#include "feather/core.h"
+#include "feather/renderer/renderer.h"
 
 namespace ft {
+    bool isContextInfoReady = false;
     OpenGLContextInfo contextInfo;
 
     int initialiseForTheTriangle();
@@ -13,12 +16,16 @@ namespace ft {
         glViewport(0, 0, width, height);
     }
 
-    void getOpenGLContextInfo(OpenGLContextInfo *info) {
-        glGetIntegerv(GL_MAJOR_VERSION, &info->majorVersion);
-        glGetIntegerv(GL_MINOR_VERSION, &info->minorVersion);
-        snprintf(info->versionStr, sizeof(info->versionStr), "%s", glGetString(GL_VERSION));
-        snprintf(info->vendorStr, sizeof(info->vendorStr), "%s", glGetString(GL_VENDOR));
-        snprintf(info->rendererStr, sizeof(info->rendererStr), "%s", glGetString(GL_RENDERER));
+    OpenGLContextInfo *getOpenGLContextInfo() {
+        if (!isContextInfoReady) {
+            glGetIntegerv(GL_MAJOR_VERSION, &contextInfo.majorVersion);
+            glGetIntegerv(GL_MINOR_VERSION, &contextInfo.minorVersion);
+            snprintf(contextInfo.versionStr, sizeof(contextInfo.versionStr), "%s", glGetString(GL_VERSION));
+            snprintf(contextInfo.vendorStr, sizeof(contextInfo.vendorStr), "%s", glGetString(GL_VENDOR));
+            snprintf(contextInfo.rendererStr, sizeof(contextInfo.rendererStr), "%s", glGetString(GL_RENDERER));
+            isContextInfoReady = true;
+        }
+        return &contextInfo;
     }
 
     int initOpenGL(Window *window) {
@@ -26,8 +33,6 @@ namespace ft {
             FT_CORE_LOG_ERROR("Failed to initialize GLAD");
             return -1;
         }
-
-        getOpenGLContextInfo(&contextInfo);
 
         glViewport(0, 0, window->getOriginalWidth(), window->getOriginalHeight());
         glfwSetFramebufferSizeCallback(window->getWindow(), framebufferSizeCallback);
